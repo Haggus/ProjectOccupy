@@ -1,7 +1,4 @@
-#include "SDL2/SDL.h"
-#include "Game.h"
 #include "MenuState.h"
-#include "PlayState.h"
 #include <iostream>
 
 MenuState MenuState::theMenuState;
@@ -9,8 +6,8 @@ MenuState MenuState::theMenuState;
 void MenuState::init(Game* gamer) {
 	game = gamer;
 
-	back = new Sprite("res/back.bmp", 0, 0, 1280, 720);
-	cursor = new Sprite("res/cursor.png", 0, 0, 20, 20);
+	back = new Sprite(FileUtils::getImagePath() + "back.bmp", 0, 0, 1280, 720);
+	cursor = new Sprite(FileUtils::getImagePath() + "cursor.png", 0, 0, 20, 20);
 	mouseX = 0;
 	mouseY = 0;
 

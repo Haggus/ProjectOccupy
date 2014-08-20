@@ -1,6 +1,8 @@
 #pragma once
 #include "Agent.h"
 #include <vector>
+#include <stdlib.h>
+#include <ctime>
 
 class Player {
 
@@ -9,7 +11,7 @@ class Player {
 		void addAgent();
 		Agent* getAgent(int index);
 		int getAgentCount();
-		
+
 	private:
 		std::vector<Agent*> agents;
 };

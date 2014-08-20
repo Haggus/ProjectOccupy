@@ -6,7 +6,7 @@ Button::Button(std::string filename, int x, int y, int width, int height) {
 	position.y = y;
 	this->width = width;
 	this->height = height;
-	sprite = new Sprite("res/" + filename, position.x, position.y, width, height);
+	sprite = new Sprite(FileUtils::getImagePath() + filename, position.x, position.y, width, height);
 	sprite->crop(width, 0, 0);
 	isClicked = false;
 	isOver = false;

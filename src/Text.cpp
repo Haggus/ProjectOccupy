@@ -1,5 +1,3 @@
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_ttf.h"
 #include "Text.h"
 
 Text::Text(int x, int y, std::string msg) {
@@ -7,7 +5,8 @@ Text::Text(int x, int y, std::string msg) {
 	this->y = y;
 	message = msg;
 	color = {255, 255, 255};
-	font = TTF_OpenFont("res/Petitinho.ttf", 20);
+	std::string fontLocation = FileUtils::getFontPath() + "Petitinho.ttf";
+	font = TTF_OpenFont(fontLocation.c_str(), 20);
 }
 
 void Text::clean() {

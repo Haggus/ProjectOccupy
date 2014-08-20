@@ -1,8 +1,5 @@
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
-#include "SDL2/SDL_ttf.h"
 #include "Game.h"
-#include "GameState.h"
+#include "GameState.h" //<< THIS HAS TO BE HERE!
 #include <iostream>
 
 Game::Game() {
@@ -12,7 +9,7 @@ void Game::init(const char* title, int width, int height) {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	window = NULL;
-	window = SDL_CreateWindow(title, 400, 200, width, height, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow(title, 0, 0, width, height, SDL_WINDOW_SHOWN);
 	if(window == NULL) {
 		std::cout << "Window couldnt be created!" << std::endl;
 		isRunning = false;
@@ -29,7 +26,8 @@ void Game::init(const char* title, int width, int height) {
 		std::cout << "TTF couldnt be initialized!" << std::endl;
 	}
 
-	icon = IMG_Load("res/icon.png");
+	std::string iconLocation = FileUtils::getImagePath() + "icon.png";
+	icon = IMG_Load(iconLocation.c_str());
 	if(icon == NULL) {
 		std::cout << "Icon couldnt be loaded!" << std::endl;
 	}

@@ -1,14 +1,12 @@
 #include "HUD.h"
-#include "Mission.h"
-#include <sstream>
 #include <iostream>
 
 HUD::HUD(std::vector<Player>* playaz, Selector* select) {
 	players = playaz;
-	topbar = new Sprite("res/topbar.png", 0, 0, 500, 40);
+	topbar = new Sprite(FileUtils::getImagePath() + "topbar.png", 0, 0, 500, 40);
 	toptext = new Text(10, 10, "hello");
-	sidebar = new Sprite("res/sidebar.png", 1200, 0, 80, 500);
-	bottombar = new Sprite("res/bottombar.png", 390, 640, 500, 80);
+	sidebar = new Sprite(FileUtils::getImagePath() + "sidebar.png", 1200, 0, 80, 500);
+	bottombar = new Sprite(FileUtils::getImagePath() + "bottombar.png", 390, 640, 500, 80);
 	currentPlayer = 0;
 	selector = select;
 

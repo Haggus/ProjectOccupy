@@ -1,4 +1,5 @@
 #pragma once
+#include "FileUtils.h"
 #include "Sprite.h"
 #include "Map.h"
 #include "Tile.h"

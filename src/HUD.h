@@ -1,9 +1,12 @@
 #pragma once
+#include "FileUtils.h"
 #include "Sprite.h"
 #include "Text.h"
 #include "Player.h"
 #include "Selector.h"
 #include "Button.h"
+#include "Mission.h"
+#include <sstream>
 #include <vector>
 
 class HUD {

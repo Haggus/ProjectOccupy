@@ -3,6 +3,7 @@ OBJS = \
 	src/Game.cpp \
 	src/MenuState.cpp \
 	src/PlayState.cpp \
+	src/FileUtils.cpp \
 	src/Sprite.cpp \
 	src/Tile.cpp \
 	src/Map.cpp \

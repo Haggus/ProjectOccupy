@@ -1,7 +1,5 @@
 #include "Player.h"
 #include <iostream>
-#include <stdlib.h>
-#include <ctime>
 
 Player::Player() {
 	srand(time(0));

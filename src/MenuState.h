@@ -1,6 +1,9 @@
 #pragma once
 #include "SDL2/SDL.h"
+#include "Game.h"
 #include "GameState.h"
+#include "PlayState.h"
+#include "FileUtils.h"
 #include "Sprite.h"
 
 class MenuState : public GameState {

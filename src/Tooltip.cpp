@@ -1,5 +1,4 @@
 #include "Tooltip.h"
-#include "SDL2/SDL.h"
 
 void Tooltip::init() {
 	x = 0;

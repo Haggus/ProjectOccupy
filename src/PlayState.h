@@ -1,6 +1,8 @@
 #pragma once
 #include "SDL2/SDL.h"
+#include "Game.h"
 #include "GameState.h"
+#include "FileUtils.h"
 #include "Sprite.h"
 #include "Tile.h"
 #include "Map.h"

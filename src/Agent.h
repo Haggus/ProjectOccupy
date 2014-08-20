@@ -2,6 +2,8 @@
 #include "SDL2/SDL.h"
 #include "Sprite.h"
 #include "Button.h"
+#include <stdlib.h>
+#include <time.h>
 
 class Agent {
 

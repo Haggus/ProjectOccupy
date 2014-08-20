@@ -1,4 +1,3 @@
-#include "SDL2/SDL.h"
 #include "Tile.h"
 
 Tile::Tile(int x, int y, int w, int h) {
@@ -6,7 +5,7 @@ Tile::Tile(int x, int y, int w, int h) {
 	this->y = y;
 	this->w = w;
 	this->h = h;
-	image = new Sprite("res/tiles.png", x, y, w, h);
+	image = new Sprite(FileUtils::getImagePath() + "tiles.png", x, y, w, h);
 	image->crop(64, 0, 0);
 
 	memberCount[0] = 0;

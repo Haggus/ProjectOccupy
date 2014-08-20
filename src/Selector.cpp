@@ -5,7 +5,7 @@ Selector::Selector(Map* mapper) {
 	map = mapper;
 	this->xOffset = map->getXoffset();
 	this->yOffset = map->getYoffset();
-	image = new Sprite("res/select.png", 0, 0, 64, 64);
+	image = new Sprite(FileUtils::getImagePath() + "select.png", 0, 0, 64, 64);
 	isBounds = false;
 	xTile = 0;
 }

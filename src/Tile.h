@@ -1,4 +1,6 @@
 #pragma once
+#include "SDL2/SDL.h"
+#include "FileUtils.h"
 #include "Sprite.h"
 #include "Mission.h"
 #include "Button.h"

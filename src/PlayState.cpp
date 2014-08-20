@@ -1,5 +1,3 @@
-#include "SDL2/SDL.h"
-#include "Game.h"
 #include "PlayState.h"
 #include <iostream>
 
@@ -11,9 +9,9 @@ void PlayState::init(Game* gamer) {
 		players.push_back(Player());
 	}
 
-	back = new Sprite("res/back.bmp", 0, 0, 1280, 720);
-	unit = new Sprite("res/unit.png", 300, 500, 100, 100);
-	cursor = new Sprite("res/cursor.png", 0, 0, 20, 20);
+	back = new Sprite(FileUtils::getImagePath() + "back.bmp", 0, 0, 1280, 720);
+	unit = new Sprite(FileUtils::getImagePath() + "unit.png", 300, 500, 100, 100);
+	cursor = new Sprite(FileUtils::getImagePath() + "cursor.png", 0, 0, 20, 20);
 	map = new Map(350, 232);
 	map->loadMap();
 	select = new Selector(map);

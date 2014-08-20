@@ -1,8 +1,4 @@
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
 #include "Sprite.h"
-#include <iostream>
-#include <string>
 
 Sprite::Sprite(std::string filePath, int x, int y, int width, int height) {
 	image = NULL;

@@ -1,7 +1,5 @@
 #include "Agent.h"
 #include <iostream>
-#include <stdlib.h>
-#include <time.h>
 
 Agent::Agent() {
 	button = new Button("agent.png", 0, 0, 64, 64);
