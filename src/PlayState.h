@@ -23,7 +23,6 @@ class PlayState : public GameState {
 		void pause();
 		void resume();
 		void handleEvents();
-		Agent* getChosenAgent(int x, int y);
 		void update();
 		void render();
 		//singleton
@@ -49,7 +48,6 @@ class PlayState : public GameState {
 		Map* map;
 		HUD* gui;
 		Tooltip* tooltip;
-		Button* testButton;
 		int mouseX;
 		int mouseY;
 

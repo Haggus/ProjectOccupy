@@ -9,7 +9,7 @@ void PlayState::init(Game* gamer) {
 		players.push_back(Player());
 	}
 
-	back = new Sprite(FileUtils::getImagePath() + "back.bmp", 0, 0, 1280, 720);
+	back = new Sprite(FileUtils::getImagePath() + "back.png", 0, 0, 1280, 720);
 	unit = new Sprite(FileUtils::getImagePath() + "unit.png", 300, 500, 100, 100);
 	cursor = new Sprite(FileUtils::getImagePath() + "cursor.png", 0, 0, 20, 20);
 	map = new Map(350, 232);
@@ -18,7 +18,6 @@ void PlayState::init(Game* gamer) {
 	gui = new HUD(&players, select);
 	tooltip = new Tooltip();
 	tooltip->init();
-	testButton = new Button("agent.png", 50, 50, 64, 64);
 	mouseX = 0;
 	mouseY = 0;
 
@@ -62,12 +61,6 @@ void PlayState::handleEvents() {
 				game->quit();
 				break;
 			case SDL_MOUSEMOTION:
-				if(getChosenAgent(mouseX, mouseY) != nullptr) {
-					tooltip->update(mouseX, mouseY, getChosenAgent(mouseX, mouseY));
-				} else {
-					tooltip->showTip(false);
-				}
-				testButton->handleEvent(game->getMainEvent(), mouseX, mouseY);
 				break;
 			case SDL_MOUSEBUTTONDOWN:
 				switch(game->getMainEvent()->button.button) {
@@ -82,10 +75,6 @@ void PlayState::handleEvents() {
 										gui->showMissionWindow(false);
 									}
 								}
-							}
-							if(getChosenAgent(mouseX, mouseY) != nullptr) {
-								//add clicked agent to mission queue
-								gui->addAgentToMish(getChosenAgent(mouseX, mouseY));
 							}
 						} else if(gui->isPanelShown()) {
 							for(int i=0; i<select->getSelected()->getMissionCount(); i++) {
@@ -114,7 +103,6 @@ void PlayState::handleEvents() {
 						break;
 					case SDLK_c:
 						std::cout << "C pressed" << std::endl;
-						players[1].getAgent(2)->addXp(10);
 						break;
 					default:
 						break;
@@ -126,22 +114,13 @@ void PlayState::handleEvents() {
 	}
 }
 
-Agent* PlayState::getChosenAgent(int x, int y) {
-	for(int i=0; i<players[currentPlayer].getAgentCount(); i++) {
-		if(players[currentPlayer].getAgent(i)->getButton()->isMouseOver()) {
-			return players[currentPlayer].getAgent(i);
-		}
-	}
-	return nullptr;
-}
-
 void PlayState::update() {
 	cursor->setPosition(mouseX, mouseY);
 	if(!gui->isWindowShown()) {
 		select->update(mouseX, mouseY);
 	}
 	map->update();
-	gui->update(turnCount, currentPlayer,  players[currentPlayer].getAgentCount());
+	gui->update(turnCount);
 }
 
 void PlayState::render() {
@@ -152,7 +131,6 @@ void PlayState::render() {
 	unit->draw(game->getRenderer());
 	gui->draw(game->getRenderer());
 	tooltip->draw(game->getRenderer());
-	testButton->draw(game->getRenderer());
 
 	//cursor and selector always last
 	select->draw(game->getRenderer());

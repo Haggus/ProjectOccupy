@@ -14,7 +14,7 @@ class HUD {
 	public:
 		HUD(std::vector<Player>* playaz, Selector* select);
 		void clean();
-		void update(int turnCount, int currentP, int agentCount);
+		void update(int turnCount);
 		void handleEvent(SDL_Event* e, int mouseX, int mouseY);
 		void draw(SDL_Renderer* renderer);
 		void playerChange(int currentP);
@@ -23,7 +23,6 @@ class HUD {
 		void showMissionWindow(bool show);
 		bool isWindowShown();
 		bool isWindowInbound(int x, int y);
-		void addAgentToMish(Agent* agent);
 
 	private:
 		std::vector<Player>* players;
@@ -41,5 +40,4 @@ class HUD {
 
 		SDL_Rect mishWindow;
 		bool showMishWindow;
-		std::vector<Agent*> mishAgents;
 };

@@ -1,9 +1,9 @@
 #include "FileUtils.h"
 
 std::string FileUtils::getImagePath() {
-    return "res/";
+    return "res/images/";
 }
 
 std::string FileUtils::getFontPath() {
-    return "res/";
+    return "res/fonts/";
 }

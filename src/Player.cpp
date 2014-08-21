@@ -2,23 +2,30 @@
 #include <iostream>
 
 Player::Player() {
-	srand(time(0));
-	int random_id = rand() % 100;
-	std::cout << "Player: " << random_id << " created" << std::endl;
-	Agent* temp;
-	for(int i=0; i<3; i++) {
-		agents.push_back(new Agent());
-	}
+	activities[0] = 3;
+	activities[1] = 2;
+	activities[2] = 0;
+	activities[3] = 1;
+	agents = 3;
+	agentsMax = 10;
 }
 
 void Player::addAgent() {
-	agents.push_back(new Agent());
+	agents++;
 }
 
-Agent* Player::getAgent(int index) {
-	return agents.at(index);
+void Player::removeAgent() {
+	agents--;
 }
 
 int Player::getAgentCount() {
-	return agents.size();
+	return agents;
+}
+
+int Player::getAgentMax() {
+	return agentsMax;
+}
+
+int Player::getActivity(int number) {
+	return activities[number];
 }

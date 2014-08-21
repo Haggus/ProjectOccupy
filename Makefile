@@ -16,7 +16,7 @@ OBJS = \
 	src/Tooltip.cpp \
 	src/Button.cpp
 
-OBJ_NAME = resistance
+OBJ_NAME = occupy
 
 all: $(OBJS)
 	g++ $(OBJS) -std=c++11 -w -g -Wall -lSDL2 -lSDL2_image -lSDL2_ttf -o $(OBJ_NAME)

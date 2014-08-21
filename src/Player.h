@@ -1,17 +1,17 @@
 #pragma once
-#include "Agent.h"
-#include <vector>
-#include <stdlib.h>
-#include <ctime>
 
 class Player {
 
 	public:
 		Player();
 		void addAgent();
-		Agent* getAgent(int index);
+		void removeAgent();
 		int getAgentCount();
+		int getAgentMax();
+		int getActivity(int number);
 
 	private:
-		std::vector<Agent*> agents;
+		int agents;
+		int agentsMax;
+		int activities[4];
 };

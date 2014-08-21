@@ -16,9 +16,6 @@ HUD::HUD(std::vector<Player>* playaz, Selector* select) {
 
 	mishWindow = {100, 100, 1000, 500};
 	showMishWindow = false;
-	for(int i=0; i<5; i++) {
-		mishAgents.push_back(nullptr);
-	}
 }
 
 void HUD::clean() {
@@ -29,23 +26,17 @@ void HUD::clean() {
 	label->clean();
 }
 
-void HUD::update(int turnCount, int currentP, int agentCount) {
-	for(int i=0; i<players->at(currentPlayer).getAgentCount(); i++) {
-		players->at(currentPlayer).getAgent(i)->setPosition(1208, 8 + (72 * i));
-	}
+void HUD::update(int turnCount) {
 	std::stringstream ss;
-	if(currentP == 0) {
-		ss << "Turn " << turnCount << " | Player " << currentP << " (MIL) | Agents: " << agentCount;
+	if(currentPlayer == 0) {
+		ss << "Turn " << turnCount << " | Player " << currentPlayer << " (MIL) | Agents: " << players->at(currentPlayer).getAgentCount() << "/" << players->at(currentPlayer).getAgentMax();
 	} else {
-		ss << "Turn " << turnCount << " | Player " << currentP << " (RES) | Agents: " << agentCount;
+		ss << "Turn " << turnCount << " | Player " << currentPlayer << " (RES) | Agents: " << players->at(currentPlayer).getAgentCount() << "/" << players->at(currentPlayer).getAgentMax();
 	}
 	toptext->updateText(ss.str());
 }
 
 void HUD::handleEvent(SDL_Event* e, int mouseX, int mouseY) {
-	for(int i=0; i<players->at(currentPlayer).getAgentCount(); i++) {
-		players->at(currentPlayer).getAgent(i)->getButton()->handleEvent(e, mouseX, mouseY);
-	}
 	if (chosenTile != nullptr)
 	{
 		for (int i = 0; i < chosenTile->getMissionCount(); ++i)
@@ -60,9 +51,12 @@ void HUD::draw(SDL_Renderer* renderer) {
 	toptext->draw(renderer);
 	sidebar->draw(renderer);
 
-	for(int i=0; i<players->at(currentPlayer).getAgentCount(); i++) {
-		players->at(currentPlayer).getAgent(i)->draw(renderer);
+	for(int i=0; i<4; i++) { // << there are 4 activities so far, update for more
+		if(players->at(currentPlayer).getActivity(i) > 0) {
+			std::cout << "Activity " << i << ": " << players->at(currentPlayer).getActivity(i) << std::endl;
+		}
 	}
+
 	bottombar->draw(renderer);
 
 	if(showMishWindow) {
@@ -90,13 +84,6 @@ void HUD::draw(SDL_Renderer* renderer) {
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		tempRect = {150, 150, 32, 32};
 		SDL_RenderFillRect(renderer, &tempRect);
-		//fill agents (if any in queue)
-		for(int i=0; i<5; i++) {
-			if(mishAgents.at(i) != nullptr) {
-				mishAgents.at(i)->setPosition(200 + (i*100), 200);
-				mishAgents.at(i)->draw(renderer);
-			}
-		}
 	}
 
 	if(showPanel) {
@@ -150,26 +137,4 @@ bool HUD::isWindowInbound(int x, int y) {
 	} else {
 		return false;
 	}
-}
-
-void HUD::addAgentToMish(Agent* agent) {
-	bool doesExist = false;
-	for(int i=0; i<5; i++) {
-		if(mishAgents.at(i) == agent) {
-			doesExist = true;
-		}
-	}
-	if(!doesExist) {
-		std::cout << "does not exist, adding agent" << std::endl;
-		for(int i=0; i<5; i++) {
-			if(mishAgents.at(i) == nullptr) {
-				mishAgents.at(i) = agent;
-				std::cout << "ADDING AGENT MADAFAKA!" << std::endl;
-				break;
-			}
-		}
-	} else {
-		std::cout << "AGENT already exists!" << std::endl;
-	}
-	std::cout << "VECTOR SIZE: " << mishAgents.size() << std::endl;
 }
