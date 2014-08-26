@@ -10,6 +10,7 @@ Tile::Tile(int x, int y, int w, int h) {
 
 	memberCount[0] = 0;
 	memberCount[1] = 0;
+	totalMembers = 50;
 }
 
 void Tile::clean() {
@@ -32,7 +33,7 @@ void Tile::draw(SDL_Renderer* renderer) {
 }
 
 void Tile::addMembers(int amount, int type) {
-	memberCount[type] += 10;
+	memberCount[type] += amount;
 }
 
 void Tile::addMission() {
@@ -44,11 +45,15 @@ Mission* Tile::getMission(int i) {
 }
 
 int Tile::getMissionCount() {
-	return missions.size();
+	return 0;
 }
 
 int Tile::getMembers(int type) {
 	return memberCount[type];
+}
+
+int Tile::getMembersTotal() {
+	return totalMembers;
 }
 
 int Tile::getWidth() {

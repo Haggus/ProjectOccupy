@@ -18,6 +18,7 @@ class Tile {
 		Mission* getMission(int i);
 		int getMissionCount();
 		int getMembers(int type);
+		int getMembersTotal();
 		int getWidth();
 		int getHeight();
 		int getX();
@@ -31,4 +32,5 @@ class Tile {
 		int x, y;
 		int w, h;
 		int memberCount[2];
+		int totalMembers;
 };

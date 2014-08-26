@@ -1,11 +1,13 @@
 #include "HUD.h"
 #include <iostream>
 
-HUD::HUD(std::vector<Player>* playaz, Selector* select) {
+HUD::HUD(int w, int h, std::vector<Player>* playaz, Selector* select) {
+	width = w;
+	height = h;
 	players = playaz;
-	topbar = new Sprite(FileUtils::getImagePath() + "topbar.png", 0, 0, 500, 40);
-	toptext = new Text(10, 10, "hello");
-	sidebar = new Sprite(FileUtils::getImagePath() + "sidebar.png", 1200, 0, 80, 500);
+	tb = new TopBar();
+	sb = new SideBar(width - 80, 0);
+
 	bottombar = new Sprite(FileUtils::getImagePath() + "bottombar.png", 390, 640, 500, 80);
 	currentPlayer = 0;
 	selector = select;
@@ -19,21 +21,14 @@ HUD::HUD(std::vector<Player>* playaz, Selector* select) {
 }
 
 void HUD::clean() {
-	topbar->clean();
-	toptext->clean();
-	sidebar->clean();
+	tb->clean();
+	sb->clean();
 	bottombar->clean();
 	label->clean();
 }
 
 void HUD::update(int turnCount) {
-	std::stringstream ss;
-	if(currentPlayer == 0) {
-		ss << "Turn " << turnCount << " | Player " << currentPlayer << " (MIL) | Agents: " << players->at(currentPlayer).getAgentCount() << "/" << players->at(currentPlayer).getAgentMax();
-	} else {
-		ss << "Turn " << turnCount << " | Player " << currentPlayer << " (RES) | Agents: " << players->at(currentPlayer).getAgentCount() << "/" << players->at(currentPlayer).getAgentMax();
-	}
-	toptext->updateText(ss.str());
+	tb->update(turnCount, currentPlayer, players->at(currentPlayer).getAgentCount(), players->at(currentPlayer).getAgentMax());
 }
 
 void HUD::handleEvent(SDL_Event* e, int mouseX, int mouseY) {
@@ -47,15 +42,14 @@ void HUD::handleEvent(SDL_Event* e, int mouseX, int mouseY) {
 }
 
 void HUD::draw(SDL_Renderer* renderer) {
-	topbar->draw(renderer);
-	toptext->draw(renderer);
-	sidebar->draw(renderer);
+	tb->draw(renderer);
+	sb->draw(renderer);
 
-	for(int i=0; i<4; i++) { // << there are 4 activities so far, update for more
-		if(players->at(currentPlayer).getActivity(i) > 0) {
-			std::cout << "Activity " << i << ": " << players->at(currentPlayer).getActivity(i) << std::endl;
-		}
-	}
+	// for(int i=0; i<4; i++) { // << there are 4 activities so far, update for more
+	// 	if(players->at(currentPlayer).getActivity(i) > 0) {
+	// 		std::cout << "Activity " << i << ": " << players->at(currentPlayer).getActivity(i) << std::endl;
+	// 	}
+	// }
 
 	bottombar->draw(renderer);
 

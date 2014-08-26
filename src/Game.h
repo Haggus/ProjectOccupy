@@ -19,6 +19,8 @@ class Game {
 		void update();
 		void render();
 		void clean();
+		int getWidth();
+		int getHeight();
 		bool running() { return isRunning; }
 		void quit() { isRunning = false; }
 		SDL_Window* getScreen() { return window; }
@@ -31,6 +33,8 @@ class Game {
 		SDL_Renderer* renderer;
 		SDL_Event* mainEvent;
 		//SDL_Joystick* stick;
+		int w;
+		int h;
 		bool isRunning;
 		bool isFullscreen;
 		SDL_Surface* icon;

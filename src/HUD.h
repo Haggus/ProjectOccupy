@@ -1,4 +1,7 @@
 #pragma once
+#include "gui/TopBar.h"
+#include "gui/SideBar.h"
+#include "Game.h"
 #include "FileUtils.h"
 #include "Sprite.h"
 #include "Text.h"
@@ -12,7 +15,7 @@
 class HUD {
 
 	public:
-		HUD(std::vector<Player>* playaz, Selector* select);
+		HUD(int w, int h, std::vector<Player>* playaz, Selector* select);
 		void clean();
 		void update(int turnCount);
 		void handleEvent(SDL_Event* e, int mouseX, int mouseY);
@@ -25,11 +28,16 @@ class HUD {
 		bool isWindowInbound(int x, int y);
 
 	private:
+		int width;
+		int height;
 		std::vector<Player>* players;
-		Sprite* topbar;
-		Text* toptext;
-		Sprite* sidebar;
+		TopBar* tb;
+		SideBar* sb;
+
+		//bottombar
 		Sprite* bottombar;
+
+		//utils
 		int currentPlayer;
 		Selector* selector;
 

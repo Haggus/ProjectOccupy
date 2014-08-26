@@ -15,7 +15,7 @@ void PlayState::init(Game* gamer) {
 	map = new Map(350, 232);
 	map->loadMap();
 	select = new Selector(map);
-	gui = new HUD(&players, select);
+	gui = new HUD(game->getWidth(), game->getHeight(), &players, select);
 	tooltip = new Tooltip();
 	tooltip->init();
 	mouseX = 0;

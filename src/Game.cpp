@@ -8,8 +8,10 @@ Game::Game() {
 void Game::init(const char* title, int width, int height) {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
+	w = width;
+	h = height;
 	window = NULL;
-	window = SDL_CreateWindow(title, 0, 0, width, height, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow(title, 0, 0, w, h, SDL_WINDOW_SHOWN);
 	if(window == NULL) {
 		std::cout << "Window couldnt be created!" << std::endl;
 		isRunning = false;
@@ -96,4 +98,12 @@ void Game::clean() {
 	SDL_DestroyRenderer(renderer);
 	TTF_Quit();
 	delete mainEvent;
+}
+
+int Game::getWidth() {
+	return w;
+}
+
+int Game::getHeight() {
+	return h;
 }

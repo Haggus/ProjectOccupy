@@ -1,22 +1,36 @@
-OBJS = \
-	src/Resistance.cpp \
-	src/Game.cpp \
-	src/MenuState.cpp \
-	src/PlayState.cpp \
-	src/FileUtils.cpp \
-	src/Sprite.cpp \
-	src/Tile.cpp \
-	src/Map.cpp \
-	src/Selector.cpp \
-	src/Text.cpp \
-	src/Agent.cpp \
-	src/Player.cpp \
-	src/HUD.cpp \
-	src/Mission.cpp \
-	src/Tooltip.cpp \
-	src/Button.cpp
+CC=g++
+CFLAGS=-std=c++11 -w -g -Wall -lSDL2 -lSDL2_image -lSDL2_ttf
+LDFLAGS=-lSDL2 -lSDL2_image -lSDL2_ttf
+SOURCES = \
+    src/Resistance.cpp \
+    src/Game.cpp \
+    src/MenuState.cpp \
+    src/PlayState.cpp \
+    src/FileUtils.cpp \
+    src/Sprite.cpp \
+    src/Tile.cpp \
+    src/Map.cpp \
+    src/Selector.cpp \
+    src/Text.cpp \
+    src/Agent.cpp \
+    src/Player.cpp \
+    src/HUD.cpp \
+    src/Mission.cpp \
+    src/Tooltip.cpp \
+    src/Button.cpp \
+    src/gui/TopBar.cpp \
+    src/gui/SideBar.cpp
 
-OBJ_NAME = occupy
+OBJECTS=$(SOURCES:.cpp=.o)
+EXECUTABLE=occupy
 
-all: $(OBJS)
-	g++ $(OBJS) -std=c++11 -w -g -Wall -lSDL2 -lSDL2_image -lSDL2_ttf -o $(OBJ_NAME)
+all: $(SOURCES) $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
+
+.cpp.o:
+	$(CC) -c $(CFLAGS) $< -o $@
+
+clean:
+	find . -name \*.o -type f -delete
