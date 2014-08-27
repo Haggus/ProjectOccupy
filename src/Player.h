@@ -9,6 +9,7 @@ class Player {
 		int getAgentCount();
 		int getAgentMax();
 		int getActivity(int number);
+		int* getActivities();
 
 	private:
 		int agents;

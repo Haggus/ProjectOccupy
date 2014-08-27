@@ -29,3 +29,7 @@ int Player::getAgentMax() {
 int Player::getActivity(int number) {
 	return activities[number];
 }
+
+int* Player::getActivities() {
+	return activities;
+}

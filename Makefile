@@ -12,14 +12,12 @@ SOURCES = \
     src/Map.cpp \
     src/Selector.cpp \
     src/Text.cpp \
-    src/Agent.cpp \
     src/Player.cpp \
     src/HUD.cpp \
-    src/Mission.cpp \
-    src/Tooltip.cpp \
     src/Button.cpp \
     src/gui/TopBar.cpp \
-    src/gui/SideBar.cpp
+    src/gui/SideBar.cpp \
+    src/gui/BottomBar.cpp
 
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=occupy

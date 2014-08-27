@@ -2,13 +2,14 @@
 #include "../FileUtils.h"
 #include "../Sprite.h"
 #include "../Text.h"
+#include <string>
 
 class SideBar {
 
     public:
         SideBar(int xPos, int yPos);
         void clean();
-        void update();
+        void update(int numbers[]);
         void draw(SDL_Renderer* renderer);
         int getWidth();
         int getHeight();

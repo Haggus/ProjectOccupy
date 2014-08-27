@@ -1,6 +1,7 @@
 #pragma once
 #include "gui/TopBar.h"
 #include "gui/SideBar.h"
+#include "gui/BottomBar.h"
 #include "Game.h"
 #include "FileUtils.h"
 #include "Sprite.h"
@@ -8,7 +9,6 @@
 #include "Player.h"
 #include "Selector.h"
 #include "Button.h"
-#include "Mission.h"
 #include <sstream>
 #include <vector>
 
@@ -33,17 +33,12 @@ class HUD {
 		std::vector<Player>* players;
 		TopBar* tb;
 		SideBar* sb;
-
-		//bottombar
-		Sprite* bottombar;
+		BottomBar* bb;
+		bool showPanel;
 
 		//utils
 		int currentPlayer;
 		Selector* selector;
-
-		SDL_Rect rectPanel;
-		Text* label;
-		bool showPanel;
 		Tile* chosenTile;
 
 		SDL_Rect mishWindow;

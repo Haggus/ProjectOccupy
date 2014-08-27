@@ -10,7 +10,6 @@
 #include "Text.h"
 #include "Player.h"
 #include "HUD.h"
-#include "Tooltip.h"
 #include "Button.h"
 #include <vector>
 
@@ -42,12 +41,10 @@ class PlayState : public GameState {
 		const int PLAYER_COUNT = 2;
 
 		Sprite* back;
-		Sprite* unit;
 		Sprite* cursor;
 		Selector* select;
 		Map* map;
 		HUD* gui;
-		Tooltip* tooltip;
 		int mouseX;
 		int mouseY;
 

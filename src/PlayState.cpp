@@ -10,14 +10,11 @@ void PlayState::init(Game* gamer) {
 	}
 
 	back = new Sprite(FileUtils::getImagePath() + "back.png", 0, 0, 1280, 720);
-	unit = new Sprite(FileUtils::getImagePath() + "unit.png", 300, 500, 100, 100);
 	cursor = new Sprite(FileUtils::getImagePath() + "cursor.png", 0, 0, 20, 20);
 	map = new Map(350, 232);
 	map->loadMap();
 	select = new Selector(map);
 	gui = new HUD(game->getWidth(), game->getHeight(), &players, select);
-	tooltip = new Tooltip();
-	tooltip->init();
 	mouseX = 0;
 	mouseY = 0;
 
@@ -38,7 +35,6 @@ void PlayState::endTurn() {
 
 void PlayState::clean() {
 	back->clean();
-	unit->clean();
 	cursor->clean();
 	select->clean();
 	gui->clean();
@@ -65,7 +61,6 @@ void PlayState::handleEvents() {
 			case SDL_MOUSEBUTTONDOWN:
 				switch(game->getMainEvent()->button.button) {
 					case SDL_BUTTON_LEFT:
-						unit->setX(unit->getX() + 1);
 						if(gui->isWindowShown()) {
 							if(gui->isWindowInbound(mouseX, mouseY)) {
 								//clicked inside the window
@@ -77,13 +72,13 @@ void PlayState::handleEvents() {
 								}
 							}
 						} else if(gui->isPanelShown()) {
-							for(int i=0; i<select->getSelected()->getMissionCount(); i++) {
-								if(select->getSelected()->getMission(i)->collision(mouseX, mouseY)) {
-									std::cout << "Mission: " << select->getSelected()->getMission(i)->getName() << std::endl;
-									//show mission screen here!
-									gui->showMissionWindow(true);
-								}
-							}
+							// for(int i=0; i<select->getSelected()->getMissionCount(); i++) {
+							// 	if(select->getSelected()->getMission(i)->collision(mouseX, mouseY)) {
+							// 		std::cout << "Mission: " << select->getSelected()->getMission(i)->getName() << std::endl;
+							// 		//show mission screen here!
+							// 		gui->showMissionWindow(true);
+							// 	}
+							// }
 						}
 						if(select->select()) {
 							select->getSelected()->addMembers(10, currentPlayer);
@@ -128,9 +123,7 @@ void PlayState::render() {
 	map->render(game->getRenderer());
 	//everything after background and map
 
-	unit->draw(game->getRenderer());
 	gui->draw(game->getRenderer());
-	tooltip->draw(game->getRenderer());
 
 	//cursor and selector always last
 	select->draw(game->getRenderer());

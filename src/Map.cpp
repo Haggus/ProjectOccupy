@@ -27,7 +27,6 @@ void Map::loadMap() {
 	setTile(1, test);
 	test = new Tile(xOffset + 300, yOffset + 80, 180, 140);
 	setTile(2, test);
-	test->addMission();
 	test = new Tile(xOffset + 310, yOffset + 0, 140, 80);
 	setTile(3, test);
 	test = new Tile(xOffset + 480, yOffset + 25, 100, 170);

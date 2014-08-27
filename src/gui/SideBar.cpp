@@ -32,6 +32,17 @@ void SideBar::clean() {
     mishHelpText->clean();
 }
 
+void SideBar::update(int numbers[]) {
+    std::string s = std::to_string(numbers[0]);
+    mishAttackText->updateText(s);
+    s = std::to_string(numbers[1]);
+    mishDefenseText->updateText(s);
+    s = std::to_string(numbers[2]);
+    mishRecruitText->updateText(s);
+    s = std::to_string(numbers[3]);
+    mishHelpText->updateText(s);
+}
+
 void SideBar::draw(SDL_Renderer* renderer) {
     sidebar->draw(renderer);
     mishAttack->draw(renderer);

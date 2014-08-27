@@ -7,14 +7,11 @@ HUD::HUD(int w, int h, std::vector<Player>* playaz, Selector* select) {
 	players = playaz;
 	tb = new TopBar();
 	sb = new SideBar(width - 80, 0);
+	bb = new BottomBar(390, height - 80);
+	showPanel = false;
 
-	bottombar = new Sprite(FileUtils::getImagePath() + "bottombar.png", 390, 640, 500, 80);
 	currentPlayer = 0;
 	selector = select;
-
-	rectPanel = {50, 100, 200, 500};
-	label = new Text(60, 110, "missions: ");
-	showPanel = false;
 
 	mishWindow = {100, 100, 1000, 500};
 	showMishWindow = false;
@@ -23,35 +20,24 @@ HUD::HUD(int w, int h, std::vector<Player>* playaz, Selector* select) {
 void HUD::clean() {
 	tb->clean();
 	sb->clean();
-	bottombar->clean();
-	label->clean();
+	bb->clean();
 }
 
 void HUD::update(int turnCount) {
 	tb->update(turnCount, currentPlayer, players->at(currentPlayer).getAgentCount(), players->at(currentPlayer).getAgentMax());
+	sb->update(players->at(currentPlayer).getActivities());
 }
 
 void HUD::handleEvent(SDL_Event* e, int mouseX, int mouseY) {
-	if (chosenTile != nullptr)
-	{
-		for (int i = 0; i < chosenTile->getMissionCount(); ++i)
-		{
-			chosenTile->getMission(i)->getButton()->handleEvent(e, mouseX, mouseY);
-		}
-	}
+	bb->handleEvent(e, mouseX, mouseY);
 }
 
 void HUD::draw(SDL_Renderer* renderer) {
 	tb->draw(renderer);
 	sb->draw(renderer);
-
-	// for(int i=0; i<4; i++) { // << there are 4 activities so far, update for more
-	// 	if(players->at(currentPlayer).getActivity(i) > 0) {
-	// 		std::cout << "Activity " << i << ": " << players->at(currentPlayer).getActivity(i) << std::endl;
-	// 	}
-	// }
-
-	bottombar->draw(renderer);
+	if(showPanel) {
+		bb->draw(renderer);
+	}
 
 	if(showMishWindow) {
 		SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255);
@@ -78,19 +64,6 @@ void HUD::draw(SDL_Renderer* renderer) {
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		tempRect = {150, 150, 32, 32};
 		SDL_RenderFillRect(renderer, &tempRect);
-	}
-
-	if(showPanel) {
-		SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255);
-		SDL_RenderFillRect(renderer, &rectPanel);
-		label->draw(renderer);
-		int count = chosenTile->getMissionCount();
-		for(int i=0; i<count; i++) {
-			Mission* mish = chosenTile->getMission(i);
-			mish->setX(60);
-			mish->setY((30 * i) + 140);
-			mish->draw(renderer);
-		}
 	}
 }
 

@@ -36,18 +36,6 @@ void Tile::addMembers(int amount, int type) {
 	memberCount[type] += amount;
 }
 
-void Tile::addMission() {
-	missions.push_back(new Mission());
-}
-
-Mission* Tile::getMission(int i) {
-	return missions.at(i);
-}
-
-int Tile::getMissionCount() {
-	return 0;
-}
-
 int Tile::getMembers(int type) {
 	return memberCount[type];
 }
@@ -70,8 +58,4 @@ int Tile::getX() {
 
 int Tile::getY() {
 	return y;
-}
-
-Button* Tile::getButton() {
-	return button;
 }
