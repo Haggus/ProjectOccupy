@@ -94,10 +94,11 @@ void Game::clean() {
 		states.pop_back();
 	}
 	//SDL_JoystickClose(stick);
-	SDL_DestroyWindow(window);
-	SDL_DestroyRenderer(renderer);
-	TTF_Quit();
 	delete mainEvent;
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	TTF_Quit();
+	SDL_Quit();
 }
 
 int Game::getWidth() {

@@ -2,6 +2,7 @@
 #include "SDL2/SDL.h"
 #include "FileUtils.h"
 #include "Sprite.h"
+#include "Text.h"
 #include <vector>
 
 class Tile {
@@ -25,4 +26,13 @@ class Tile {
 		int w, h;
 		int memberCount[2];
 		int totalMembers;
+
+		Sprite* mishAttack;
+		Text* mishAttackText;
+		Sprite* mishDefense;
+		Text* mishDefenseText;
+		Sprite* mishRecruit;
+		Text* mishRecruitText;
+		Sprite* mishHelp;
+		Text* mishHelpText;
 };

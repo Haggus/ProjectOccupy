@@ -61,30 +61,26 @@ void PlayState::handleEvents() {
 			case SDL_MOUSEBUTTONDOWN:
 				switch(game->getMainEvent()->button.button) {
 					case SDL_BUTTON_LEFT:
-						if(gui->isWindowShown()) {
-							if(gui->isWindowInbound(mouseX, mouseY)) {
-								//clicked inside the window
-								std::cout << "mouseXY: " << mouseX << ", " << mouseY << std::endl;
-								if(mouseX > 150 && mouseX < 182) {
-									if(mouseY > 150 && mouseY < 182) {
-										gui->showMissionWindow(false);
-									}
-								}
+						// if(gui->isWindowShown()) {
+						// 	if(gui->isWindowInbound(mouseX, mouseY)) {
+						// 		//clicked inside the window
+						// 		std::cout << "mouseXY: " << mouseX << ", " << mouseY << std::endl;
+						// 		if(mouseX > 150 && mouseX < 182) {
+						// 			if(mouseY > 150 && mouseY < 182) {
+						// 				gui->showMissionWindow(false);
+						// 			}
+						// 		}
+						// 	}
+						// } else
+						if(gui->isPanelShown()) {
+							if(gui->isPanelClicked(mouseX, mouseY)) {
+								std::cout << "panel clicked yo" << std::endl;
+							} else {
+								gui->showMissionPanel(false, nullptr);
 							}
-						} else if(gui->isPanelShown()) {
-							// for(int i=0; i<select->getSelected()->getMissionCount(); i++) {
-							// 	if(select->getSelected()->getMission(i)->collision(mouseX, mouseY)) {
-							// 		std::cout << "Mission: " << select->getSelected()->getMission(i)->getName() << std::endl;
-							// 		//show mission screen here!
-							// 		gui->showMissionWindow(true);
-							// 	}
-							// }
-						}
-						if(select->select()) {
+						} else if(select->select()) {
 							select->getSelected()->addMembers(10, currentPlayer);
 							gui->showMissionPanel(true, select->getSelected());
-						} else {
-							gui->showMissionPanel(false, nullptr);
 						}
 						break;
 					default:

@@ -82,6 +82,14 @@ bool HUD::isPanelShown() {
 	return showPanel;
 }
 
+bool HUD::isPanelClicked(int x, int y) {
+	if(bb->collision(x, y)) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 void HUD::showMissionWindow(bool show) {
 	showMishWindow = show;
 }

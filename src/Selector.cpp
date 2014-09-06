@@ -12,7 +12,6 @@ Selector::Selector(Map* mapper) {
 
 void Selector::clean() {
 	image->clean();
-	delete this;
 }
 
 void Selector::update(int mX, int mY) {

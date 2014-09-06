@@ -10,11 +10,14 @@ class BottomBar {
         BottomBar(int xPos, int yPos);
         void clean();
         void handleEvent(SDL_Event* e, int mouseX, int mouseY);
+        bool collision(int xPos, int yPos);
         void draw(SDL_Renderer* renderer);
 
     private:
         int x;
         int y;
+        int width;
+        int height;
         Sprite* bottombar;
         Button* btnAttack;
         Button* btnDefense;

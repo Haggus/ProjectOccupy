@@ -3,7 +3,9 @@
 BottomBar::BottomBar(int xPos, int yPos) {
     x = xPos;
     y = yPos;
-    bottombar = new Sprite(FileUtils::getImagePath() + "bottombar.png", x, y, 500, 80);
+    width = 500;
+    height = 80;
+    bottombar = new Sprite(FileUtils::getImagePath() + "bottombar.png", x, y, width, height);
     btnAttack = new Button("btnAttack.png", x + 5, y + 5, 64, 64);
     btnDefense = new Button("btnDefense.png", x + 80, y + 5, 64, 64);
 }
@@ -20,6 +22,18 @@ void BottomBar::handleEvent(SDL_Event* e, int mouseX, int mouseY) {
     btnDefense->handleEvent(e, mouseX, mouseY);
     if(btnDefense->isButtonPressed()) {
         std::cout << "defense pressed" << std::endl;
+    }
+}
+
+bool BottomBar::collision(int xPos, int yPos) {
+    if(xPos >= x && xPos <= (x + width)) {
+        if(yPos >= y && yPos <= (y + height)) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
     }
 }
 

@@ -23,6 +23,7 @@ class HUD {
 		void playerChange(int currentP);
 		void showMissionPanel(bool show, Tile* chosen);
 		bool isPanelShown();
+		bool isPanelClicked(int x, int y);
 		void showMissionWindow(bool show);
 		bool isWindowShown();
 		bool isWindowInbound(int x, int y);

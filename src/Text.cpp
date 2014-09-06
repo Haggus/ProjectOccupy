@@ -11,7 +11,6 @@ Text::Text(int x, int y, std::string msg) {
 
 void Text::clean() {
 	TTF_CloseFont(font);
-	delete this;
 }
 
 void Text::setX(int x) {

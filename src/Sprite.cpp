@@ -21,7 +21,6 @@ Sprite::Sprite(std::string filePath, int x, int y, int width, int height) {
 
 void Sprite::clean() {
 	SDL_FreeSurface(image);
-	delete this;
 }
 
 void Sprite::crop(int size, int x, int y) {
