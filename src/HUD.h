@@ -15,7 +15,7 @@
 class HUD {
 
 	public:
-		HUD(int w, int h, std::vector<Player>* playaz, Selector* select);
+		HUD(int w, int h, std::vector<Player>* playaz, Selector* select, Map* mapper);
 		void clean();
 		void update(int turnCount);
 		void handleEvent(SDL_Event* e, int mouseX, int mouseY);
@@ -39,6 +39,7 @@ class HUD {
 
 		//utils
 		int currentPlayer;
+		Map* map;
 		Selector* selector;
 		Tile* chosenTile;
 

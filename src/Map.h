@@ -3,7 +3,7 @@
 #include <vector>
 
 class Map {
-	
+
 	public:
 		Map(int xOffset, int yOffset);
 		void setTile(int x, Tile* tile);
@@ -11,12 +11,14 @@ class Map {
 		void loadMap();
 		int getXoffset();
 		int getYoffset();
-		void update();
+		void update(int currentP);
 		void render(SDL_Renderer* render);
 		int getTileCount();
+		int getAgentCount(int type);
 
 	private:
 		std::vector<Tile*> tiles;
+		int currentPlayer;
 		int tileCount;
 		int xOffset;
 		int yOffset;

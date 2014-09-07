@@ -3,6 +3,7 @@
 
 Map::Map(int xOffset, int yOffset) {
 	tileCount = 5;
+	currentPlayer = 0;
 	this->xOffset = xOffset;
 	this->yOffset = yOffset;
 	for(int i=0; i<tileCount; i++) {
@@ -41,9 +42,10 @@ int Map::getYoffset() {
 	return yOffset;
 }
 
-void Map::update() {
+void Map::update(int currentP) {
+	currentPlayer = currentP;
 	for(int i=0; i<tileCount; i++) {
-		getTile(i)->update();
+		getTile(i)->update(currentPlayer);
 	}
 }
 
@@ -55,4 +57,12 @@ void Map::render(SDL_Renderer* renderer) {
 
 int Map::getTileCount() {
 	return tileCount;
+}
+
+int Map::getAgentCount(int type) {
+	int count = 0;
+	for(int i=0; i<tileCount; i++) {
+		count += getTile(i)->getMembers(currentPlayer, type);
+	}
+	return count;
 }

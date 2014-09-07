@@ -2,11 +2,7 @@
 #include <iostream>
 
 Player::Player() {
-	activities[0] = 3;
-	activities[1] = 2;
-	activities[2] = 0;
-	activities[3] = 1;
-	agents = 3;
+	agents = 10;
 	agentsMax = 10;
 }
 
@@ -14,8 +10,14 @@ void Player::addAgent() {
 	agents++;
 }
 
-void Player::removeAgent() {
-	agents--;
+bool Player::removeAgent() {
+	if(agents > 0) {
+		agents--;
+		return true;
+	} else {
+		std::cout << "No more agents to assign" << std::endl;
+		return false;
+	}
 }
 
 int Player::getAgentCount() {
@@ -24,12 +26,4 @@ int Player::getAgentCount() {
 
 int Player::getAgentMax() {
 	return agentsMax;
-}
-
-int Player::getActivity(int number) {
-	return activities[number];
-}
-
-int* Player::getActivities() {
-	return activities;
 }

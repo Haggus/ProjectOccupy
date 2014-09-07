@@ -1,10 +1,11 @@
 #include "SideBar.h"
 
-SideBar::SideBar(int xPos, int yPos) {
+SideBar::SideBar(Map* mapper, int xPos, int yPos) {
     x = xPos;
     y = yPos;
     width = 80;
     height = 500;
+    map = mapper;
     sidebar = new Sprite(FileUtils::getImagePath() + "sidebar.png", x, y, width, height);
     mishAttack = new Sprite(FileUtils::getImagePath() + "markers.png", x + 5, y + 5, 32, 32);
     mishAttack->crop(16, 0, 0);
@@ -32,14 +33,14 @@ void SideBar::clean() {
     mishHelpText->clean();
 }
 
-void SideBar::update(int numbers[]) {
-    std::string s = std::to_string(numbers[0]);
+void SideBar::update() {
+    std::string s = std::to_string(map->getAgentCount(0));
     mishAttackText->updateText(s);
-    s = std::to_string(numbers[1]);
+    s = std::to_string(map->getAgentCount(1));
     mishDefenseText->updateText(s);
-    s = std::to_string(numbers[2]);
+    s = std::to_string(map->getAgentCount(2));
     mishRecruitText->updateText(s);
-    s = std::to_string(numbers[3]);
+    s = std::to_string(map->getAgentCount(3));
     mishHelpText->updateText(s);
 }
 

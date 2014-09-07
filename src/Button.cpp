@@ -53,11 +53,9 @@ void Button::handleEvent(SDL_Event* e, int mouseX, int mouseY) {
 					break;
 				case SDL_MOUSEBUTTONDOWN:
 					isClicked = true;
-					std::cout << "button down" << std::endl;
 					break;
 				case SDL_MOUSEBUTTONUP:
 					isClicked = false;
-					std::cout << "button up" << std::endl;
 					break;
 				default:
 					break;

@@ -1,17 +1,19 @@
 #include "HUD.h"
 #include <iostream>
 
-HUD::HUD(int w, int h, std::vector<Player>* playaz, Selector* select) {
+HUD::HUD(int w, int h, std::vector<Player>* playaz, Selector* select, Map* mapper) {
 	width = w;
 	height = h;
 	players = playaz;
-	tb = new TopBar();
-	sb = new SideBar(width - 80, 0);
-	bb = new BottomBar(390, height - 80);
-	showPanel = false;
 
 	currentPlayer = 0;
 	selector = select;
+	map = mapper;
+
+	tb = new TopBar();
+	sb = new SideBar(map, width - 80, 0);
+	bb = new BottomBar(players, selector, 390, height - 80);
+	showPanel = false;
 
 	mishWindow = {100, 100, 1000, 500};
 	showMishWindow = false;
@@ -25,11 +27,11 @@ void HUD::clean() {
 
 void HUD::update(int turnCount) {
 	tb->update(turnCount, currentPlayer, players->at(currentPlayer).getAgentCount(), players->at(currentPlayer).getAgentMax());
-	sb->update(players->at(currentPlayer).getActivities());
+	sb->update();
 }
 
 void HUD::handleEvent(SDL_Event* e, int mouseX, int mouseY) {
-	bb->handleEvent(e, mouseX, mouseY);
+	bb->handleEvent(e, mouseX, mouseY, currentPlayer);
 }
 
 void HUD::draw(SDL_Renderer* renderer) {
@@ -58,7 +60,7 @@ void HUD::draw(SDL_Renderer* renderer) {
 		tempRect = {200, 300, 300, 32};
 		SDL_RenderFillRect(renderer, &tempRect);
 		SDL_SetRenderDrawColor(renderer, 200, 100, 50, 255);
-		tempRect = {201, 301, chosenTile->getMembers(0), 30};
+		//tempRect = {201, 301, chosenTile->getMembers(0), 30};
 		SDL_RenderFillRect(renderer, &tempRect);
 		//close button
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);

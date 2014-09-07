@@ -14,7 +14,7 @@ void PlayState::init(Game* gamer) {
 	map = new Map(350, 232);
 	map->loadMap();
 	select = new Selector(map);
-	gui = new HUD(game->getWidth(), game->getHeight(), &players, select);
+	gui = new HUD(game->getWidth(), game->getHeight(), &players, select, map);
 	mouseX = 0;
 	mouseY = 0;
 
@@ -73,13 +73,10 @@ void PlayState::handleEvents() {
 						// 	}
 						// } else
 						if(gui->isPanelShown()) {
-							if(gui->isPanelClicked(mouseX, mouseY)) {
-								std::cout << "panel clicked yo" << std::endl;
-							} else {
+							if(!gui->isPanelClicked(mouseX, mouseY)) {
 								gui->showMissionPanel(false, nullptr);
 							}
 						} else if(select->select()) {
-							select->getSelected()->addMembers(10, currentPlayer);
 							gui->showMissionPanel(true, select->getSelected());
 						}
 						break;
@@ -110,7 +107,7 @@ void PlayState::update() {
 	if(!gui->isWindowShown()) {
 		select->update(mouseX, mouseY);
 	}
-	map->update();
+	map->update(currentPlayer);
 	gui->update(turnCount);
 }
 

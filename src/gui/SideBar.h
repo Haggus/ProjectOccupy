@@ -2,14 +2,15 @@
 #include "../FileUtils.h"
 #include "../Sprite.h"
 #include "../Text.h"
+#include "../Map.h"
 #include <string>
 
 class SideBar {
 
     public:
-        SideBar(int xPos, int yPos);
+        SideBar(Map* mapper, int xPos, int yPos);
         void clean();
-        void update(int numbers[]);
+        void update();
         void draw(SDL_Renderer* renderer);
         int getWidth();
         int getHeight();
@@ -19,6 +20,7 @@ class SideBar {
         int y;
         int width;
         int height;
+        Map* map;
         Sprite* sidebar;
         Sprite* mishAttack;
         Text* mishAttackText;
